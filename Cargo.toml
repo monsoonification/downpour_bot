@@ -6,3 +6,4 @@ edition = "2021"
 [dependencies]
 serenity = "0.12.1"
 tokio = { version = "1.0", features = ["macros", "rt-multi-thread"] }
+calamine = "0.25.0"
