@@ -18,8 +18,10 @@ struct Handler;
 
 #[async_trait]
 impl EventHandler for Handler {
-    // logic -> regex to breakdown message into words -> check if any of the words are in the triggermap -> if so, send a message
     async fn message(&self, ctx: Context, msg: Message) {
+        if msg.author.bot {
+            return;
+        }
         let mut map = triggermap::xlsx_to_hashmap("triggersheet.xlsx");
         println!("spreadsheet loaded!");
         let msg_iterator = msg.content.split_whitespace();
@@ -33,8 +35,6 @@ impl EventHandler for Handler {
         }
     }
 
-    
-    
     async fn ready(&self, _: Context, ready: Ready) {
         println!("{} is ready", ready.user.name);
     }
@@ -53,8 +53,6 @@ async fn main() {
     file.read_to_string(&mut token).expect("uhm token doesn't exist");
     // let intents = GatewayIntents::DIRECT_MESSAGES
     //     | GatewayIntents::MESSAGE_CONTENT;
-
-    let map = triggermap::xlsx_to_hashmap("triggersheet.xlsx");
 
 
     let mut client =
