@@ -61,17 +61,3 @@ pub fn xlsx_to_hashmap(filepath: &str) -> TriggerMap {
     return map;
 }
 
-
-
-
-//DEPRECATED I WILL REWRITE LATER
-fn contains_keywords_ignorecase(string: String, keywords: &[&str]) -> bool {
-    
-    for keyword in keywords {
-        let lowercase_string = string.to_lowercase();
-        if lowercase_string.contains(&keyword.to_lowercase()) {
-            return true;
-        }
-    }
-    return false;
-}
